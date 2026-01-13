@@ -212,4 +212,25 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * WhatsApp floating button handler
+   */
+  function initWhatsAppButton() {
+    document.querySelectorAll('.whatsapp-float').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var phone = (this.getAttribute('data-phone') || '8801518450249').replace(/\D/g, '');
+        var text = encodeURIComponent(this.getAttribute('data-text') || 'Hello, I would like to inquire about your services.');
+        var url = 'https://wa.me/' + phone + '?text=' + text;
+        window.open(url, '_blank');
+      });
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatsAppButton);
+  } else {
+    initWhatsAppButton();
+  }
+
 })();
